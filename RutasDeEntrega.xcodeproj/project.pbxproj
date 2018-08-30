@@ -8,22 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		170ECA922129B27900AFB15B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170ECA912129B27900AFB15B /* AppDelegate.swift */; };
-		170ECA942129B27900AFB15B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170ECA932129B27900AFB15B /* ViewController.swift */; };
+		170ECA942129B27900AFB15B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170ECA932129B27900AFB15B /* WelcomeViewController.swift */; };
 		170ECA972129B27900AFB15B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 170ECA952129B27900AFB15B /* Main.storyboard */; };
 		170ECA9A2129B27900AFB15B /* RutasDeEntrega.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 170ECA982129B27900AFB15B /* RutasDeEntrega.xcdatamodeld */; };
 		170ECA9C2129B27A00AFB15B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 170ECA9B2129B27A00AFB15B /* Assets.xcassets */; };
 		170ECA9F2129B27A00AFB15B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 170ECA9D2129B27A00AFB15B /* LaunchScreen.storyboard */; };
+		170ECAA72129B5C700AFB15B /* RutasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170ECAA62129B5C700AFB15B /* RutasViewController.swift */; };
+		170ECAA92129B5E600AFB15B /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170ECAA82129B5E600AFB15B /* NewUserViewController.swift */; };
+		170ECAAB2129C56400AFB15B /* ChoferesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170ECAAA2129C56400AFB15B /* ChoferesViewController.swift */; };
+		170ECAAD2129C56D00AFB15B /* AjustesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170ECAAC2129C56D00AFB15B /* AjustesViewController.swift */; };
+		170ECAAF2129D21600AFB15B /* RutasDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170ECAAE2129D21600AFB15B /* RutasDetailViewController.swift */; };
+		170ECAB12129D22900AFB15B /* ChoferesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170ECAB02129D22900AFB15B /* ChoferesDetailViewController.swift */; };
+		170ECAB82129F38200AFB15B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170ECAB72129F38200AFB15B /* Extensions.swift */; };
+		17D18377212B0D0D00EFF017 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D18376212B0D0D00EFF017 /* Helpers.swift */; };
+		17D18386212B4A1D00EFF017 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D18385212B4A1D00EFF017 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		170ECA8E2129B27900AFB15B /* RutasDeEntrega.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RutasDeEntrega.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		170ECA912129B27900AFB15B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		170ECA932129B27900AFB15B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		170ECA932129B27900AFB15B /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		170ECA962129B27900AFB15B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		170ECA992129B27900AFB15B /* RutasDeEntrega.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RutasDeEntrega.xcdatamodel; sourceTree = "<group>"; };
 		170ECA9B2129B27A00AFB15B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		170ECA9E2129B27A00AFB15B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		170ECAA02129B27A00AFB15B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		170ECAA62129B5C700AFB15B /* RutasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RutasViewController.swift; sourceTree = "<group>"; };
+		170ECAA82129B5E600AFB15B /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
+		170ECAAA2129C56400AFB15B /* ChoferesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoferesViewController.swift; sourceTree = "<group>"; };
+		170ECAAC2129C56D00AFB15B /* AjustesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjustesViewController.swift; sourceTree = "<group>"; };
+		170ECAAE2129D21600AFB15B /* RutasDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RutasDetailViewController.swift; sourceTree = "<group>"; };
+		170ECAB02129D22900AFB15B /* ChoferesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoferesDetailViewController.swift; sourceTree = "<group>"; };
+		170ECAB72129F38200AFB15B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		17D18376212B0D0D00EFF017 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		17D18385212B4A1D00EFF017 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +75,71 @@
 			isa = PBXGroup;
 			children = (
 				170ECA912129B27900AFB15B /* AppDelegate.swift */,
-				170ECA932129B27900AFB15B /* ViewController.swift */,
+				170ECAB72129F38200AFB15B /* Extensions.swift */,
+				17D18376212B0D0D00EFF017 /* Helpers.swift */,
+				17D18385212B4A1D00EFF017 /* Models.swift */,
+				170ECAB62129F34000AFB15B /* WelcomeScene */,
+				170ECAB22129F2FE00AFB15B /* RoutesScene */,
+				170ECAB32129F31300AFB15B /* DriversScene */,
+				170ECAB42129F32600AFB15B /* SettingsScene */,
+				170ECAB52129F33100AFB15B /* NewUserScene */,
 				170ECA952129B27900AFB15B /* Main.storyboard */,
-				170ECA9B2129B27A00AFB15B /* Assets.xcassets */,
 				170ECA9D2129B27A00AFB15B /* LaunchScreen.storyboard */,
+				170ECA9B2129B27A00AFB15B /* Assets.xcassets */,
 				170ECAA02129B27A00AFB15B /* Info.plist */,
-				170ECA982129B27900AFB15B /* RutasDeEntrega.xcdatamodeld */,
+				17D18384212B2EAC00EFF017 /* CoreData */,
 			);
 			path = RutasDeEntrega;
+			sourceTree = "<group>";
+		};
+		170ECAB22129F2FE00AFB15B /* RoutesScene */ = {
+			isa = PBXGroup;
+			children = (
+				170ECAA62129B5C700AFB15B /* RutasViewController.swift */,
+				170ECAAE2129D21600AFB15B /* RutasDetailViewController.swift */,
+			);
+			path = RoutesScene;
+			sourceTree = "<group>";
+		};
+		170ECAB32129F31300AFB15B /* DriversScene */ = {
+			isa = PBXGroup;
+			children = (
+				170ECAAA2129C56400AFB15B /* ChoferesViewController.swift */,
+				170ECAB02129D22900AFB15B /* ChoferesDetailViewController.swift */,
+			);
+			path = DriversScene;
+			sourceTree = "<group>";
+		};
+		170ECAB42129F32600AFB15B /* SettingsScene */ = {
+			isa = PBXGroup;
+			children = (
+				170ECAAC2129C56D00AFB15B /* AjustesViewController.swift */,
+			);
+			path = SettingsScene;
+			sourceTree = "<group>";
+		};
+		170ECAB52129F33100AFB15B /* NewUserScene */ = {
+			isa = PBXGroup;
+			children = (
+				170ECAA82129B5E600AFB15B /* NewUserViewController.swift */,
+			);
+			path = NewUserScene;
+			sourceTree = "<group>";
+		};
+		170ECAB62129F34000AFB15B /* WelcomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				170ECA932129B27900AFB15B /* WelcomeViewController.swift */,
+			);
+			path = WelcomeScene;
+			sourceTree = "<group>";
+		};
+		17D18384212B2EAC00EFF017 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				170ECA982129B27900AFB15B /* RutasDeEntrega.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +213,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				170ECA942129B27900AFB15B /* ViewController.swift in Sources */,
+				170ECAAD2129C56D00AFB15B /* AjustesViewController.swift in Sources */,
+				170ECAA72129B5C700AFB15B /* RutasViewController.swift in Sources */,
+				170ECA942129B27900AFB15B /* WelcomeViewController.swift in Sources */,
+				17D18386212B4A1D00EFF017 /* Models.swift in Sources */,
+				170ECAAF2129D21600AFB15B /* RutasDetailViewController.swift in Sources */,
+				17D18377212B0D0D00EFF017 /* Helpers.swift in Sources */,
+				170ECAA92129B5E600AFB15B /* NewUserViewController.swift in Sources */,
+				170ECAB82129F38200AFB15B /* Extensions.swift in Sources */,
 				170ECA9A2129B27900AFB15B /* RutasDeEntrega.xcdatamodeld in Sources */,
+				170ECAB12129D22900AFB15B /* ChoferesDetailViewController.swift in Sources */,
 				170ECA922129B27900AFB15B /* AppDelegate.swift in Sources */,
+				170ECAAB2129C56400AFB15B /* ChoferesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
