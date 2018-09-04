@@ -27,7 +27,7 @@ func createAlert(title: String, message: String, buttonTitle: String? = "Ok", ok
     return alertController
 }
 
-func phoneNumberFormater(number:String) -> String {
+func phoneNumberFormater(number: String) -> String {
     let cleanPhoneNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     let numbersOnly = NSMutableString(string: cleanPhoneNumber)
     numbersOnly.insert("-", at: 3)

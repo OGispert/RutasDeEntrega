@@ -39,7 +39,7 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
         case 0:
             return 1
         case 1:
-            return 2
+            return 3
         default:
             return 1
         }
@@ -62,6 +62,12 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
                     return signOutCell
                 }
             case 1:
+                if let editUserCell = settingsTableView.dequeueReusableCell(withIdentifier: "ButtonCell") {
+                    editUserCell.textLabel?.text = "Cambiar Contraseña"
+                    editUserCell.textLabel?.textColor =  #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+                    return editUserCell
+                }
+            case 2:
                 if let deleteUserCell = settingsTableView.dequeueReusableCell(withIdentifier: "ButtonCell") {
                     deleteUserCell.textLabel?.text = "Borrar mi usuario"
                     deleteUserCell.textLabel?.textColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
@@ -85,6 +91,8 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
             case 0:
                 signOut()
             case 1:
+                editPasswordCellTapped()
+            case 2:
                 confirmDeletion()
             default :
                 return
@@ -105,6 +113,16 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
         }
     }
     
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch section {
+        case 1:
+            guard let name = User.name, let username = User.username, let email = User.email else { return "" }
+            return "Nombre: " + name + "\n" + "Usuario: " + username + "\n" + "Email: " + email
+        default:
+            return ""
+        }
+    }
+    
     func signOut() {
         if let rootNav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
             let welcomeVC = WelcomeViewController.getInstance()
@@ -112,8 +130,55 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
         }
     }
     
+    func editPasswordCellTapped() {
+        let alert = UIAlertController(title: "Cambiar Contraseña", message: nil, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Actualizar", style: .default) { (alertAction) in
+            let passwordTextField = alert.textFields![0] as UITextField
+            
+            if let password = passwordTextField.text, password.count >= 8 {
+                self.updateUserPassword(password)
+            }
+        }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Nueva Contraseña"
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
+    func updateUserPassword(_ password: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        guard let name = User.name else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Usuario")
+        
+        fetchRequest.predicate = NSPredicate(format: "nombre = %@", name)
+        
+        do {
+            let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
+            if results?.count != 0 {
+                results![0].setValue(password, forKey: "password")
+            }
+            try managedContext.save()
+            let alertController = createAlert(title: "Contraseña Actualizada" , message: "Presione OK para salir de la aplicación y reingresar sus datos de acceso.", okAction: signOut)
+            present(alertController, animated: true, completion: nil)
+        } catch {
+            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     func confirmDeletion() {
-        let alert = UIAlertController(title: "Eliminar Usuario", message: "¿Seguro que desea eliminar su usuario?", preferredStyle: .alert)
+        guard let username = User.username else { return }
+        let alert = UIAlertController(title: "Eliminar Usuario", message: "¿Seguro que desea eliminar al usuario " + username + "?", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Eliminar", style: .destructive) { (alertAction) in
             self.deleteUser()

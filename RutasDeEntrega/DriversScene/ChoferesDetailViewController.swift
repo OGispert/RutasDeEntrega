@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import MessageUI
 
-class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, MFMessageComposeViewControllerDelegate {
+class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, MFMessageComposeViewControllerDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
@@ -41,6 +41,10 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
         if let route = Driver.assignedRoute, route != "" {
             assignRouteButton.setTitle("Ruta asignada: " + route, for: .normal)
         }
+        
+        if routes.count == 0 {
+            assignRouteButton.isEnabled = false
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -68,6 +72,14 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
         routesPicker.isHidden = false
     }
     
+    @IBAction func editName(_ sender: UIButton) {
+        editNameButtonTapped()
+    }
+    
+    @IBAction func editPhoneNumber(_ sender: UIButton) {
+        editPhoneNumberButtonTapped()
+    }
+    
     @IBAction func deleteDriverButtonTapped(_ sender: UIButton) {
         confirmDeletion()
     }
@@ -78,6 +90,111 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     func closeView() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func editNameButtonTapped() {
+        let alert = UIAlertController(title: "Editar Nombre", message: nil, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Guardar", style: .default) { (alertAction) in
+            let nameTextField = alert.textFields![0] as UITextField
+            
+            if let name = nameTextField.text, name.count != 0 {
+                self.updateDriverName(name)
+            }
+        }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Nombre"
+            textField.autocapitalizationType = UITextAutocapitalizationType.words
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
+    func editPhoneNumberButtonTapped() {
+        let alert = UIAlertController(title: "Editar Teléfono", message: nil, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Guardar", style: .default) { (alertAction) in
+            let phoneTextField = alert.textFields![0] as UITextField
+            
+            if let phoneNumber = phoneTextField.text, phoneNumber.count == 10  {
+                self.updateDriverPhoneNumber(phoneNumber)
+            }
+        }
+        
+        alert.addTextField { (phoneField) in
+            phoneField.delegate = self
+            phoneField.placeholder = "Teléfono"
+            phoneField.keyboardType = .numberPad
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let textFieldCount = textField.text?.count ?? 0
+        let newLength = textFieldCount - range.length + string.count
+        
+        if newLength > 10 {
+            return false
+        }
+        return true
+    }
+    
+    func updateDriverPhoneNumber(_ phoneNumber: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        guard let name = Driver.name else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Chofer")
+        
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        do {
+            let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
+            if results?.count != 0 {
+                results![0].setValue(phoneNumber, forKey: "phone")
+            }
+            try managedContext.save()
+            Driver.phoneNumber = phoneNumber
+            phoneLabel.text = phoneNumberFormater(number: phoneNumber)
+        } catch {
+            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func updateDriverName(_ name: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        guard let phoneNumber = Driver.phoneNumber else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Chofer")
+        
+        fetchRequest.predicate = NSPredicate(format: "phone = %@", phoneNumber)
+        
+        do {
+            let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
+            if results?.count != 0 {
+                results![0].setValue(name, forKey: "name")
+            }
+            try managedContext.save()
+            Driver.name = name
+            nameLabel.text = name
+        } catch {
+            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            present(alertController, animated: true, completion: nil)
+        }
     }
     
     func updateDriverRoute(_ route: String) {

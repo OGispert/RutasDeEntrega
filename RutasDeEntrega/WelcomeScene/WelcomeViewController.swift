@@ -28,19 +28,17 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.makeNavigationBarClear()
         
         loginButton.isEnabled = false
-                        
+        
         hideKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        userTextField.text = "ogisper"
-        passwordTextField.text = "password"
+        userTextField.text = ""
+        passwordTextField.text = ""
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        //Si los campos de usuario y password tienen por lo menos un caracter, se habilita el botón de ingreso
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             guard let passwordCount = self.passwordTextField.text?.count else { return }
             let isValidUsername = self.userTextField.text?.count == 0
@@ -53,7 +51,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-
+    
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         guard let username = userTextField.text, let password = passwordTextField.text else { return }
         validateUser(username: username, password: password)

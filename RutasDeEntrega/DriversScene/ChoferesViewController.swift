@@ -68,8 +68,9 @@ class ChoferesViewController: UIViewController, UITableViewDelegate, UITableView
             let nameTextField = alert.textFields![0] as UITextField
             let phoneTextField = alert.textFields![1] as UITextField
             
-            guard let name = nameTextField.text, let phoneNumber = phoneTextField.text else { return }
-            self.save(name, phoneNumber)
+            if let name = nameTextField.text, name.count != 0, let phoneNumber = phoneTextField.text, phoneNumber.count == 10  {
+                self.save(name, phoneNumber)
+            }
         }
         
         alert.addTextField { (textField) in
