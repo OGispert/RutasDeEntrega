@@ -33,10 +33,7 @@ class RutasDetailViewController: UIViewController, MKMapViewDelegate {
         let destinationLocation = CLLocationCoordinate2D(latitude: latDestino, longitude: lonDestino)
         DispatchQueue.main.async {
             self.showRouteOnMap(pickupCoordinate: sourceLocation, destinationCoordinate: destinationLocation)
-            
         }
-        //32.927889, longitude: -97.011527
-        //32.902514, longitude: -96.962818
     }
 
     @IBAction func closeButtonTapped(_ sender: UIButton) {

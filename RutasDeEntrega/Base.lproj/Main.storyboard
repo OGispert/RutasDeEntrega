@@ -535,12 +535,35 @@
                                     <action selector="sendTextWithSender:" destination="qdW-zp-xfO" eventType="touchUpInside" id="O6O-Ee-ZcR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJz-dU-O5Q">
+                                <rect key="frame" x="255.66666666666663" y="255.66666666666663" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="EPH-NR-X8z"/>
+                                    <constraint firstAttribute="width" constant="30" id="s5X-8W-PhN"/>
+                                </constraints>
+                                <state key="normal" image="edit"/>
+                                <connections>
+                                    <action selector="editPhoneNumber:" destination="qdW-zp-xfO" eventType="touchUpInside" id="Tyq-EH-ej0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q82-0e-c3h">
+                                <rect key="frame" x="296.66666666666669" y="174" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FsM-vq-jJU"/>
+                                    <constraint firstAttribute="width" constant="30" id="gse-ZZ-4v5"/>
+                                </constraints>
+                                <state key="normal" image="edit"/>
+                                <connections>
+                                    <action selector="editName:" destination="qdW-zp-xfO" eventType="touchUpInside" id="dFB-89-SHO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wL7-m8-Zch" firstAttribute="centerX" secondItem="on2-Jw-Bxg" secondAttribute="centerX" id="6Ua-Z5-dVS"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KdF-yp-PsN" secondAttribute="trailing" constant="20" symbolic="YES" id="7Ub-nr-PLZ"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ezU-qb-saG" secondAttribute="trailing" constant="20" symbolic="YES" id="BCu-Kb-aYB"/>
+                            <constraint firstItem="eJz-dU-O5Q" firstAttribute="centerY" secondItem="akh-n5-F6B" secondAttribute="centerY" id="CFa-w5-O6C"/>
                             <constraint firstItem="akh-n5-F6B" firstAttribute="top" secondItem="KdF-yp-PsN" secondAttribute="bottom" constant="8" id="Fbb-e6-TaU"/>
                             <constraint firstItem="fCm-zv-JOc" firstAttribute="centerX" secondItem="on2-Jw-Bxg" secondAttribute="centerX" id="FhY-Wn-MYj"/>
                             <constraint firstItem="c1e-4k-72q" firstAttribute="leading" secondItem="HSV-gA-YoY" secondAttribute="leading" id="FqT-F3-uXk"/>
@@ -548,10 +571,13 @@
                             <constraint firstItem="ezU-qb-saG" firstAttribute="top" secondItem="HSV-gA-YoY" secondAttribute="top" constant="100" id="KfB-se-Y7R"/>
                             <constraint firstItem="r0v-O7-4UN" firstAttribute="centerX" secondItem="on2-Jw-Bxg" secondAttribute="centerX" id="OPP-vI-fa7"/>
                             <constraint firstItem="r0v-O7-4UN" firstAttribute="top" secondItem="akh-n5-F6B" secondAttribute="bottom" constant="65" id="OTo-bw-dLG"/>
+                            <constraint firstItem="eJz-dU-O5Q" firstAttribute="leading" secondItem="akh-n5-F6B" secondAttribute="trailing" constant="16" id="Plx-XH-BEd"/>
                             <constraint firstItem="KdF-yp-PsN" firstAttribute="leading" secondItem="ezU-qb-saG" secondAttribute="leading" id="QWG-Y8-W1i"/>
                             <constraint firstItem="KZ8-9m-sXm" firstAttribute="centerX" secondItem="on2-Jw-Bxg" secondAttribute="centerX" id="RHm-rv-3P6"/>
                             <constraint firstItem="HSV-gA-YoY" firstAttribute="trailing" secondItem="qcg-hB-7NJ" secondAttribute="trailing" constant="16" id="UE6-1m-pYZ"/>
                             <constraint firstItem="qcg-hB-7NJ" firstAttribute="top" secondItem="HSV-gA-YoY" secondAttribute="top" id="VEd-zk-wc9"/>
+                            <constraint firstItem="Q82-0e-c3h" firstAttribute="centerY" secondItem="fCm-zv-JOc" secondAttribute="centerY" id="ZwS-s4-InE"/>
+                            <constraint firstItem="Q82-0e-c3h" firstAttribute="leading" secondItem="fCm-zv-JOc" secondAttribute="trailing" constant="16" id="aad-3Y-44R"/>
                             <constraint firstItem="c1e-4k-72q" firstAttribute="trailing" secondItem="HSV-gA-YoY" secondAttribute="trailing" id="iVr-L3-TY4"/>
                             <constraint firstItem="KZ8-9m-sXm" firstAttribute="top" secondItem="HSV-gA-YoY" secondAttribute="top" constant="35" id="iZT-gS-2Zn"/>
                             <constraint firstItem="ezU-qb-saG" firstAttribute="leading" secondItem="HSV-gA-YoY" secondAttribute="leading" constant="70" id="ihR-dw-7ZP"/>
@@ -653,6 +679,7 @@
     </scenes>
     <resources>
         <image name="cancel" width="30" height="30"/>
+        <image name="edit" width="30" height="30"/>
         <image name="map_marker" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
         <image name="truck" width="30" height="30"/>
