@@ -15,7 +15,6 @@ class RutasDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    
     static func getInstance() -> RutasDetailViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: "RouteDetailsID") as! RutasDetailViewController

@@ -38,12 +38,6 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        //El botón de ingreso se habilita si:
-        //Los campos tienen por lo menos un caracter.
-        //El campo de correo contiene un email válido.
-        //El campo de password contien por lo menos 8 caracteres.
-        //Los campos de password y confirmPassword contienen los mismos caracteres.
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             guard let passwordCount = self.passwordTextField.text?.count else { return }
             let isValidName = self.nameTextField.text?.count == 0
@@ -85,11 +79,9 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
         UIView.commitAnimations()
     }
     
-
     @IBAction func createUserButtonTapped(_ sender: UIButton) {
-        guard let name = nameTextField.text, let email = emailTextField.text, let username = usernameTextField.text, let password = passwordTextField.text else { return }
-        
-        save(name: name, email: email, username: username, password: password)
+        guard let username = usernameTextField.text else { return }
+        validateUsername(username)
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
@@ -130,5 +122,32 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
             let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    func validateUsername(_ username: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Usuario")
+        
+        fetchRequest.predicate = NSPredicate(format: "username = %@", username)
+        
+        do {
+            let selectedUsername = try managedContext.fetch(fetchRequest)
+            if selectedUsername.count == 0 {
+                guard let name = nameTextField.text, let email = emailTextField.text, let username = usernameTextField.text, let password = passwordTextField.text else { return }
+                
+                save(name: name, email: email, username: username, password: password)
+            } else {
+                let alertController = createAlert(title: "El Usuario ya existe" , message: "El nombre de usuario seleccionado ya existe, elija otro nombre de usuario e inténtelo nuevamente.", okAction: changeUsername)
+                present(alertController, animated: true, completion: nil)
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func changeUsername() {
+        usernameTextField.text = ""
+        usernameTextField.becomeFirstResponder()
     }
 }

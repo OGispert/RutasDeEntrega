@@ -54,7 +54,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         guard let username = userTextField.text, let password = passwordTextField.text else { return }
-        validateUser(username: username, password: password)
+        validateUser(username, password)
     }
     
     @IBAction func newUserButtonTapped(_ sender: UIButton) {
@@ -62,17 +62,22 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(newUser, animated: true)
     }
     
-    func validateUser(username: String, password: String) {
+    func validateUser(_ username: String, _ password: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Usuario")
         
+        let predicate1 = NSPredicate(format: "username = %@", username)
+        let predicate2 = NSPredicate(format: "password = %@", password)
+
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2])
+        
         do {
-            let users = try managedContext.fetch(fetchRequest)
-            for user in users as [NSManagedObject] {
-                if user.value(forKey: "username") as! String == username && user.value(forKey: "password") as! String == password {
-                    User.name = user.value(forKey: "nombre") as? String
-                    User.email = user.value(forKey: "email") as? String
+            let user = try managedContext.fetch(fetchRequest)
+            if user.count != 0 {
+                for userInfo in user as [NSManagedObject] {
+                    User.name = userInfo.value(forKey: "nombre") as? String
+                    User.email = userInfo.value(forKey: "email") as? String
                     User.username = username
                     User.password = password
                     
@@ -81,6 +86,9 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                     tabBarView.navigationItem.hidesBackButton = true
                     self.navigationController?.pushViewController(tabBarView, animated: true)
                 }
+            } else {
+                let alertController = createAlert(title: "Usuario y/o Contraseña no válidos" , message: "Verifique su usuario y contraseña e inténtelo nuevamente.", okAction: nil)
+                present(alertController, animated: true, completion: nil)
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
