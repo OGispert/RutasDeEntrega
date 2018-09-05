@@ -2,8 +2,8 @@
 //  Helpers.swift
 //  RutasDeEntrega
 //
-//  Created by Gispert Pelaez, Othmar (Accenture) on 8/20/18.
-//  Copyright © 2018 Gispert Pelaez, Othmar (Accenture). All rights reserved.
+//  Created by Gispert Pelaez, Othmar on 8/20/18.
+//  Copyright © 2018 Gispert Pelaez, Othmar. All rights reserved.
 //
 
 import Foundation
