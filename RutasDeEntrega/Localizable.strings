@@ -1,0 +1,79 @@
+/* 
+  Localizable.strings
+  RutasDeEntrega
+
+  Created by Gispert Pelaez, Othmar (Accenture) on 9/4/18.
+  Copyright © 2018 Gispert Pelaez, Othmar (Accenture). All rights reserved.
+*/
+
+
+//General Strings
+"RDE_Guardar" = "Guardar";
+"RDE_Cancelar" = "Cancelar";
+"RDE_Nombre" = "Nombre";
+"RDE_Eliminar" = "Eliminar";
+"RDE_Error" = "Ocurrió un Error";
+"RDE_Telefono" = "Teléfono";
+"RDE_Atencion" = "Atención";
+"RDE_Update" = "Actualizar";
+
+// Welcome Scene
+"RDE_UserNotValid_Title" = "Usuario y/o Contraseña no válidos";
+"RDE_UserNotValid_Message" = "Verifique su usuario y contraseña e inténtelo nuevamente.";
+
+//Routes Scene
+"RDE_Rutas" = "Rutas de Entrega";
+"RDE_AddNewRoute" = "Agregar Ruta";
+"RDE_AddNewRoute_AlertTitle" = "Agregar una nueva ruta";
+
+"RDE_LatitudOrigen" = "Latitud Origen";
+"RDE_LongitudOrigen" = "Longitud Origen";
+"RDE_LatitudDestino" = "Latitud Destino";
+"RDE_LongitudDestino" = "Longitud Destino";
+"RDE_NuevaRuta_AlertTitle" = "Nueva Ruta";
+"RDE_NuevaRuta_AlertMessage" = "Se ha agregado una nueva ruta a la lista.";
+
+"RDE_DeleteRoute_Title" = "Eliminar Ruta";
+"RDE_DeleteRoute_Message" = "¿Seguro que desea eliminar esta ruta?";
+
+"RDE_RouteDeleted_Title" = "Ruta Eliminada";
+"RDE_RouteDeleted_Message" = "Presione OK para regresar a la lista de rutas.";
+
+//Drivers Scene
+"RDE_Choferes" = "Choferes";
+"RDE_AddDriver" = "Agregar Chofer";
+"RDE_AddDriver_AlertTitle" = "Agregar un nuevo chofer";
+"RDE_DriverAdded_Title" = "Nuevo Chofer";
+"RDE_DriverAdded_Message" = "Se ha agregado un nuevo chofer a la lista.";
+"RDE_AssignedRoute" = "Ruta asignada: ";
+"RDE_EditarNombre" = "Editar Nombre";
+"RDE_EditarTelefono" = "Editar Teléfono";
+"RDE_DriverDeleted_AlertTitle" = "Chofer Eliminado";
+"RDE_DriverDeleted_AlertMessage" = "Presione OK para regresar a la lista de choferes.";
+"RDE_ConfirmDriverDeletion_Title" = "Eliminar Chofer";
+"RDE_ConfirmDriverDeletion_Message" = "¿Seguro que desea eliminar al chofer?";
+"RDE_RoutePreviousyAssigned" = "La ruta seleccionada ha sido asignada previamente a otro chofer. Vaya a Ajustes para borrar las selecciones previas.";
+"RDE_SMS_Message" = "Buenos días, hoy te toca la ruta %@. Suerte.";
+
+//Settings Scene
+"RDE_Settings" = "Ajustes";
+"RDE_ResetRoutes" = "Borrar rutas asignadas";
+"RDE_Logout" = "Salir";
+"RDE_ChangePassword" = "Cambiar Contraseña";
+"RDE_DeleteMyUser" = "Eliminar mi Usuario";
+"RDE_RoutesAndDrivers" = "Rutas y Choferes";
+"RDE_User" = "Usuario";
+"RDE_ChangePassword" = "Cambiar Contraseña";
+"RDE_NewPassword" = "Nueva Contraseña";
+"RDE_DeleteUser" = "Eliminar usuario";
+"RDE_ConfirmUserDeletion" = "¿Seguro que desea eliminar al usuario %@?";
+"RDE_UserDeleted" = "Usuario Eliminado";
+"RDE_OkToLogout" = "Presione OK para salir de la aplicación.";
+"RDE_RoutesReseted" = "Rutas Borradas";
+"RDE_RoutesSelectionReset" = "La selección de rutas fue borrada con éxito.";
+
+//New User Scene
+"RDE_RegistrationCompleted" = "Registro Completado";
+"RDE_OkToLogin" = "Presiona OK para regresar a la pantalla de inicio donde deberás ingresar tu usuario y contraseña.";
+"RDE_UserAlreadyExists_Title" = "El Usuario ya existe";
+"RDE_UserAlreadyExists_Message" = "El nombre de usuario seleccionado ya existe, elija otro nombre de usuario e inténtelo nuevamente.";

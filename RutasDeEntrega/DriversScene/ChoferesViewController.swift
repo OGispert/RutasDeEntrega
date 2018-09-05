@@ -18,7 +18,7 @@ class ChoferesViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Choferes"
+        self.title = "RDE_Choferes".localizedString()
         enableLargeTitles()
         
         choferesTableView.delegate = self
@@ -29,7 +29,7 @@ class ChoferesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Agregar Chofer", style: .plain, target: self, action: #selector(addNewDriverButtonTapped))
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "RDE_AddDriver".localizedString(), style: .plain, target: self, action: #selector(addNewDriverButtonTapped))
         
         getDriversList()
     }
@@ -62,9 +62,9 @@ class ChoferesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func addNewDriverButtonTapped() {
-        let alert = UIAlertController(title: "Agregar un nuevo chofer", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "RDE_AddDriver_AlertTitle".localizedString(), message: nil, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Guardar", style: .default) { (alertAction) in
+        let action = UIAlertAction(title: "RDE_Guardar".localizedString(), style: .default) { (alertAction) in
             let nameTextField = alert.textFields![0] as UITextField
             let phoneTextField = alert.textFields![1] as UITextField
             
@@ -74,17 +74,17 @@ class ChoferesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Nombre"
+            textField.placeholder = "RDE_Nombre".localizedString()
             textField.autocapitalizationType = UITextAutocapitalizationType.words
         }
         
         alert.addTextField { (phoneField) in
             phoneField.delegate = self
-            phoneField.placeholder = "Teléfono"
+            phoneField.placeholder = "RDE_Telefono".localizedString()
             phoneField.keyboardType = .numberPad
         }
         
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        let cancelAction = UIAlertAction(title: "RDE_Cancelar".localizedString(), style: .default)
         
         alert.addAction(action)
         alert.addAction(cancelAction)
@@ -115,10 +115,10 @@ class ChoferesViewController: UIViewController, UITableViewDelegate, UITableView
         do {
             try managedContext.save()
             getDriversList()
-            let alertController = createAlert(title: "Nuevo Chofer" , message: "Se ha agregado un nuevo chofer a la lista.", okAction: nil)
+            let alertController = createAlert(title: "RDE_DriverAdded_Title".localizedString(), message: "RDE_DriverAdded_Message".localizedString(), okAction: nil)
             present(alertController, animated: true, completion: nil)
         } catch let error as NSError {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }
@@ -136,5 +136,4 @@ class ChoferesViewController: UIViewController, UITableViewDelegate, UITableView
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
-
 }

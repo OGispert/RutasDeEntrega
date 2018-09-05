@@ -23,7 +23,7 @@ class RutasViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Rutas"
+        self.title = "RDE_Rutas".localizedString()
         
         enableLargeTitles()
         
@@ -35,14 +35,14 @@ class RutasViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Agregar Ruta", style: .plain, target: self, action: #selector(addNewRouteButtonTapped))
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "RDE_AddNewRoute".localizedString(), style: .plain, target: self, action: #selector(addNewRouteButtonTapped))
         getRoutesList()
     }
     
     @objc func addNewRouteButtonTapped() {
-        let alert = UIAlertController(title: "Agregar una nueva ruta", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "RDE_AddNewRoute_AlertTitle".localizedString(), message: nil, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Guardar", style: .default) { (alertAction) in
+        let action = UIAlertAction(title: "RDE_Guardar".localizedString(), style: .default) { (alertAction) in
             let nameTextField = alert.textFields![0] as UITextField
             let latitudOrigenTextField = alert.textFields![1] as UITextField
             let longitudOrigenTextField = alert.textFields![2] as UITextField
@@ -58,31 +58,31 @@ class RutasViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Nombre"
+            textField.placeholder = "RDE_Nombre".localizedString()
             textField.autocapitalizationType = UITextAutocapitalizationType.words
         }
         
         alert.addTextField { (latitudeOrigenField) in
-            latitudeOrigenField.placeholder = "Latitud Origen"
+            latitudeOrigenField.placeholder = "RDE_LatitudOrigen".localizedString()
             latitudeOrigenField.keyboardType = .numbersAndPunctuation
         }
         
         alert.addTextField { (longitudeOrigenField) in
-            longitudeOrigenField.placeholder = "Longitud Origen"
+            longitudeOrigenField.placeholder = "RDE_LongitudOrigen".localizedString()
             longitudeOrigenField.keyboardType = .numbersAndPunctuation
         }
         
         alert.addTextField { (latitudeDestinoField) in
-            latitudeDestinoField.placeholder = "Latitud Destino"
+            latitudeDestinoField.placeholder = "RDE_LatitudDestino".localizedString()
             latitudeDestinoField.keyboardType = .numbersAndPunctuation
         }
         
         alert.addTextField { (longitudeDestinoField) in
-            longitudeDestinoField.placeholder = "Longitud Destino"
+            longitudeDestinoField.placeholder = "RDE_LongitudDestino".localizedString()
             longitudeDestinoField.keyboardType = .numbersAndPunctuation
         }
         
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        let cancelAction = UIAlertAction(title: "RDE_Cancelar".localizedString(), style: .default)
         
         alert.addAction(action)
         alert.addAction(cancelAction)
@@ -138,10 +138,10 @@ class RutasViewController: UIViewController, UITableViewDelegate, UITableViewDat
         do {
             try managedContext.save()
             getRoutesList()
-            let alertController = createAlert(title: "Nueva Ruta" , message: "Se ha agregado una nueva ruta a la lista.", okAction: nil)
+            let alertController = createAlert(title: "RDE_NuevaRuta_AlertTitle".localizedString(), message: "RDE_NuevaRuta_AlertMessage".localizedString(), okAction: nil)
             present(alertController, animated: true, completion: nil)
         } catch let error as NSError {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }

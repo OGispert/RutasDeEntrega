@@ -116,10 +116,10 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
         
         do {
             try managedContext.save()
-            let alertController = createAlert(title: "Registro Completado" , message: "Presiona OK para regresar a la pantalla de inicio donde deberás ingresar tu usuario y contraseña.", okAction: goToLogin)
+            let alertController = createAlert(title: "RDE_RegistrationCompleted".localizedString(), message: "RDE_OkToLogin".localizedString(), okAction: goToLogin)
             present(alertController, animated: true, completion: nil)
         } catch let error as NSError {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }
@@ -138,7 +138,7 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
                 
                 save(name: name, email: email, username: username, password: password)
             } else {
-                let alertController = createAlert(title: "El Usuario ya existe" , message: "El nombre de usuario seleccionado ya existe, elija otro nombre de usuario e inténtelo nuevamente.", okAction: changeUsername)
+                let alertController = createAlert(title: "RDE_UserAlreadyExists_Title".localizedString(), message: "RDE_UserAlreadyExists_Message".localizedString(), okAction: changeUsername)
                 present(alertController, animated: true, completion: nil)
             }
         } catch let error as NSError {

@@ -39,7 +39,7 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
         
         if let route = Driver.assignedRoute, route != "" {
-            assignRouteButton.setTitle("Ruta asignada: " + route, for: .normal)
+            assignRouteButton.setTitle("RDE_AssignedRoute".localizedString() + route, for: .normal)
         }
         
         if routes.count == 0 {
@@ -93,9 +93,9 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     func editNameButtonTapped() {
-        let alert = UIAlertController(title: "Editar Nombre", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "RDE_EditarNombre".localizedString(), message: nil, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Guardar", style: .default) { (alertAction) in
+        let action = UIAlertAction(title: "RDE_Guardar".localizedString(), style: .default) { (alertAction) in
             let nameTextField = alert.textFields![0] as UITextField
             
             if let name = nameTextField.text, name.count != 0 {
@@ -104,11 +104,11 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Nombre"
+            textField.placeholder = "RDE_Nombre".localizedString()
             textField.autocapitalizationType = UITextAutocapitalizationType.words
         }
         
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        let cancelAction = UIAlertAction(title: "RDE_Cancelar".localizedString(), style: .default)
         
         alert.addAction(action)
         alert.addAction(cancelAction)
@@ -117,9 +117,9 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     func editPhoneNumberButtonTapped() {
-        let alert = UIAlertController(title: "Editar Teléfono", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "RDE_EditarTelefono".localizedString(), message: nil, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Guardar", style: .default) { (alertAction) in
+        let action = UIAlertAction(title: "RDE_Guardar".localizedString(), style: .default) { (alertAction) in
             let phoneTextField = alert.textFields![0] as UITextField
             
             if let phoneNumber = phoneTextField.text, phoneNumber.count == 10  {
@@ -129,11 +129,11 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         alert.addTextField { (phoneField) in
             phoneField.delegate = self
-            phoneField.placeholder = "Teléfono"
+            phoneField.placeholder = "RDE_Telefono".localizedString()
             phoneField.keyboardType = .numberPad
         }
         
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        let cancelAction = UIAlertAction(title: "RDE_Cancelar".localizedString(), style: .default)
         
         alert.addAction(action)
         alert.addAction(cancelAction)
@@ -169,7 +169,7 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
             Driver.phoneNumber = phoneNumber
             phoneLabel.text = phoneNumberFormater(number: phoneNumber)
         } catch {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }
@@ -192,7 +192,7 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
             Driver.name = name
             nameLabel.text = name
         } catch {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }
@@ -212,9 +212,9 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
                 results![0].setValue(route, forKey: "route")
             }
             try managedContext.save()
-            assignRouteButton.setTitle("Ruta asignada: " + route, for: .normal)
+            assignRouteButton.setTitle("RDE_AssignedRoute".localizedString() + route, for: .normal)
         } catch {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }
@@ -235,21 +235,21 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
                 }
             }
             try managedContext.save()
-            let alertController = createAlert(title: "Chofer Eliminado" , message: "Presione OK para regresar a la lista de choferes.", okAction: closeView)
+            let alertController = createAlert(title: "RDE_DriverDeleted_AlertTitle".localizedString(), message: "RDE_DriverDeleted_AlertMessage".localizedString(), okAction: closeView)
             present(alertController, animated: true, completion: nil)
         } catch let error {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }
     
     func confirmDeletion() {
-        let alert = UIAlertController(title: "Eliminar Chofer", message: "¿Seguro que desea eliminar al chofer?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "RDE_ConfirmDriverDeletion_Title".localizedString(), message: "RDE_ConfirmDriverDeletion_Title".localizedString(), preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Eliminar", style: .destructive) { (alertAction) in
+        let action = UIAlertAction(title: "RDE_Eliminar".localizedString(), style: .destructive) { (alertAction) in
             self.deleteUser()
         }
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        let cancelAction = UIAlertAction(title: "RDE_Cancelar".localizedString(), style: .default)
         
         alert.addAction(action)
         alert.addAction(cancelAction)
@@ -280,7 +280,7 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
             let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
             for result in results! {
                 if route == result.value(forKey: "route") as? String {
-                    let alertController = createAlert(title: "Aviso" , message: "La ruta seleccionada ha sido asignada previamente a otro chofer. Vaya a Ajustes para borrar las selecciones previas.", okAction: nil)
+                    let alertController = createAlert(title: "RDE_Atencion".localizedString(), message: "RDE_RoutePreviousyAssigned".localizedString(), okAction: nil)
                     present(alertController, animated: true, completion: nil)
                 }
             }
@@ -296,11 +296,11 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
             let controller = MFMessageComposeViewController()
             guard let route = Driver.assignedRoute, route != "" else { return }
             controller.messageComposeDelegate = self
-            controller.body = "Buenos días, hoy te toca la ruta " + route + ". Suerte."
+            controller.body = String(format: "RDE_SMS_Message".localizedString(), route)
             controller.recipients = [phoneLabel.text] as? [String]
             self.present(controller, animated: true, completion: nil)
         } else {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: "", okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: "", okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }

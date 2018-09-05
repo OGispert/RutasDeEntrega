@@ -87,7 +87,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                     self.navigationController?.pushViewController(tabBarView, animated: true)
                 }
             } else {
-                let alertController = createAlert(title: "Usuario y/o Contraseña no válidos" , message: "Verifique su usuario y contraseña e inténtelo nuevamente.", okAction: nil)
+                let alertController = createAlert(title: "RDE_UserNotValid_Title".localizedString(), message: "RDE_UserNotValid_Message".localizedString(), okAction: nil)
                 present(alertController, animated: true, completion: nil)
             }
         } catch let error as NSError {

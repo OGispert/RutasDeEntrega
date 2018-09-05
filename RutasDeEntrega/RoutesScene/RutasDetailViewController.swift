@@ -48,12 +48,12 @@ class RutasDetailViewController: UIViewController, MKMapViewDelegate {
     }
     
     func confirmDeletion() {
-        let alert = UIAlertController(title: "Eliminar Ruta", message: "¿Seguro que desea eliminar esta ruta?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "RDE_DeleteRoute_Title".localizedString(), message: "RDE_DeleteRoute_Message".localizedString(), preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Eliminar", style: .destructive) { (alertAction) in
+        let action = UIAlertAction(title: "RDE_Eliminar".localizedString(), style: .destructive) { (alertAction) in
             self.deleteUser()
         }
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        let cancelAction = UIAlertAction(title: "RDE_Cancelar".localizedString(), style: .default)
         
         alert.addAction(action)
         alert.addAction(cancelAction)
@@ -77,10 +77,10 @@ class RutasDetailViewController: UIViewController, MKMapViewDelegate {
                 }
             }
             try managedContext.save()
-            let alertController = createAlert(title: "Ruta Eliminada" , message: "Presione OK para regresar a la lista de rutas.", okAction: closeView)
+            let alertController = createAlert(title: "RDE_RouteDeleted_Title".localizedString(), message: "RDE_RouteDeleted_Message".localizedString(), okAction: closeView)
             present(alertController, animated: true, completion: nil)
         } catch let error {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }

@@ -16,7 +16,7 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Ajustes"
+        self.title = "RDE_Settings".localizedString()
         enableLargeTitles()
         
         settingsTableView.delegate = self
@@ -49,7 +49,7 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
         switch indexPath.section {
         case 0:
             if let resetRoutesCell = settingsTableView.dequeueReusableCell(withIdentifier: "ButtonCell") {
-                resetRoutesCell.textLabel?.text = "Borrar rutas asignadas"
+                resetRoutesCell.textLabel?.text = "RDE_ResetRoutes".localizedString()
                 resetRoutesCell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
                 return resetRoutesCell
             }
@@ -57,19 +57,19 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
             switch indexPath.row {
             case 0:
                 if let signOutCell = settingsTableView.dequeueReusableCell(withIdentifier: "ButtonCell") {
-                    signOutCell.textLabel?.text = "Salir"
+                    signOutCell.textLabel?.text = "RDE_Logout".localizedString()
                     signOutCell.textLabel?.textColor =  #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
                     return signOutCell
                 }
             case 1:
                 if let editUserCell = settingsTableView.dequeueReusableCell(withIdentifier: "ButtonCell") {
-                    editUserCell.textLabel?.text = "Cambiar Contraseña"
+                    editUserCell.textLabel?.text = "RDE_ChangePassword".localizedString()
                     editUserCell.textLabel?.textColor =  #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
                     return editUserCell
                 }
             case 2:
                 if let deleteUserCell = settingsTableView.dequeueReusableCell(withIdentifier: "ButtonCell") {
-                    deleteUserCell.textLabel?.text = "Borrar mi usuario"
+                    deleteUserCell.textLabel?.text = "RDE_DeleteMyUser".localizedString()
                     deleteUserCell.textLabel?.textColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
                     return deleteUserCell
                 }
@@ -105,9 +105,9 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Rutas y Choferes"
+            return "RDE_RoutesAndDrivers".localizedString()
         case 1:
-            return "Usuario"
+            return "RDE_User".localizedString()
         default:
             return ""
         }
@@ -131,9 +131,9 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
     }
     
     func editPasswordCellTapped() {
-        let alert = UIAlertController(title: "Cambiar Contraseña", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "RDE_ChangePassword".localizedString(), message: nil, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Actualizar", style: .default) { (alertAction) in
+        let action = UIAlertAction(title: "RDE_Update".localizedString(), style: .default) { (alertAction) in
             let passwordTextField = alert.textFields![0] as UITextField
             
             if let password = passwordTextField.text, password.count >= 8 {
@@ -142,10 +142,10 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
         }
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Nueva Contraseña"
+            textField.placeholder = "RDE_NewPassword".localizedString()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        let cancelAction = UIAlertAction(title: "RDE_Cancelar".localizedString(), style: .default)
         
         alert.addAction(action)
         alert.addAction(cancelAction)
@@ -171,19 +171,19 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
             let alertController = createAlert(title: "Contraseña Actualizada" , message: "Presione OK para salir de la aplicación y reingresar sus datos de acceso.", okAction: signOut)
             present(alertController, animated: true, completion: nil)
         } catch {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }
     
     func confirmDeletion() {
         guard let username = User.username else { return }
-        let alert = UIAlertController(title: "Eliminar Usuario", message: "¿Seguro que desea eliminar al usuario " + username + "?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "RDE_DeleteUser".localizedString(), message: String(format: "RDE_ConfirmUserDeletion".localizedString(), username), preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Eliminar", style: .destructive) { (alertAction) in
+        let action = UIAlertAction(title: "RDE_Eliminar".localizedString(), style: .destructive) { (alertAction) in
             self.deleteUser()
         }
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .default)
+        let cancelAction = UIAlertAction(title: "RDE_Cancelar".localizedString(), style: .default)
         
         alert.addAction(action)
         alert.addAction(cancelAction)
@@ -207,10 +207,10 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
                 }
             }
             try managedContext.save()
-            let alertController = createAlert(title: "Usuario Eliminado" , message: "Presione OK para salir de la aplicación.", okAction: signOut)
+            let alertController = createAlert(title: "RDE_UserDeleted".localizedString(), message: "RDE_OkToLogout".localizedString(), okAction: signOut)
             present(alertController, animated: true, completion: nil)
         } catch let error {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }
@@ -229,11 +229,11 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
             }
             try managedContext.save()
             Driver.assignedRoute = ""
-            let alertController = createAlert(title: "Rutas Borradas" , message: "La selección de rutas fue borrada con éxito.", okAction: nil)
+            let alertController = createAlert(title: "RDE_RoutesReseted".localizedString(), message: "RDE_RoutesSelectionReset".localizedString(), okAction: nil)
             present(alertController, animated: true, completion: nil)
             
         } catch {
-            let alertController = createAlert(title: "Ocurrió un Error" , message: error.localizedDescription, okAction: nil)
+            let alertController = createAlert(title: "RDE_Error".localizedString(), message: error.localizedDescription, okAction: nil)
             present(alertController, animated: true, completion: nil)
         }
     }

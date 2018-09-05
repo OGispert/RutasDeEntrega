@@ -57,4 +57,8 @@ extension String {
     var doubleValue: Double {
         return Double(self) ?? 0
     }
+    
+    func localizedString(comment: String = "") -> String {
+        return NSLocalizedString(self, comment: comment)
+    }
 }
