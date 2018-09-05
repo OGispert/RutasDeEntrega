@@ -143,6 +143,7 @@ class AjustesViewController: UIViewController,  UITableViewDelegate, UITableView
         
         alert.addTextField { (textField) in
             textField.placeholder = "RDE_NewPassword".localizedString()
+            textField.isSecureTextEntry = true
         }
         
         let cancelAction = UIAlertAction(title: "RDE_Cancelar".localizedString(), style: .default)
