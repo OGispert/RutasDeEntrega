@@ -16,6 +16,7 @@ struct User {
 }
 
 struct Driver {
+    static var id: Int?
     static var name: String?
     static var phoneNumber: String?
     static var assignedRoute: String?

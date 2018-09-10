@@ -14,6 +14,7 @@ class ChoferesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var choferesTableView: UITableView!
     
     var drivers: [NSManagedObject] = []
+    var driversIDs: [NSManagedObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +58,7 @@ class ChoferesViewController: UIViewController, UITableViewDelegate, UITableView
         Driver.name = driver.value(forKeyPath: "name") as? String
         Driver.phoneNumber = driver.value(forKeyPath: "phone") as? String
         Driver.assignedRoute = driver.value(forKey: "route") as? String
+        Driver.id = driver.value(forKey: "id") as? Int
         let driverDetails = ChoferesDetailViewController.getInstance()
         self.navigationController?.present(driverDetails, animated: true, completion: nil)
     }
@@ -111,7 +113,8 @@ class ChoferesViewController: UIViewController, UITableViewDelegate, UITableView
         
         driver.setValue(name, forKeyPath: "name")
         driver.setValue(phoneNumber, forKey: "phone")
-        
+        driver.setValue((drivers.count + 1), forKey: "id")
+    
         do {
             try managedContext.save()
             getDriversList()

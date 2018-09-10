@@ -153,12 +153,12 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     func updateDriverPhoneNumber(_ phoneNumber: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        guard let name = Driver.name else { return }
+        guard let id = Driver.id else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Chofer")
         
-        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        fetchRequest.predicate = NSPredicate(format: "id = %i", id)
         
         do {
             let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
@@ -176,12 +176,12 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     func updateDriverName(_ name: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        guard let phoneNumber = Driver.phoneNumber else { return }
+        guard let id = Driver.id else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Chofer")
         
-        fetchRequest.predicate = NSPredicate(format: "phone = %@", phoneNumber)
+        fetchRequest.predicate = NSPredicate(format: "id = %i", id)
         
         do {
             let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
@@ -199,12 +199,12 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     func updateDriverRoute(_ route: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        guard let name = Driver.name else { return }
+        guard let id = Driver.id else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Chofer")
         
-        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        fetchRequest.predicate = NSPredicate(format: "id = %i", id)
         
         do {
             let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
@@ -221,12 +221,12 @@ class ChoferesDetailViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     func deleteUser() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        guard let name = Driver.name else { return }
+        guard let id = Driver.id else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Chofer")
         
-        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        fetchRequest.predicate = NSPredicate(format: "id = %i", id)
         
         do {
             if let drivers = try managedContext.fetch(fetchRequest) as? [NSManagedObject] {
